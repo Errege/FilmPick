@@ -1,0 +1,468 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище FilmPickModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ACTOR">
+          <Key>
+            <PropertyRef Name="A_ID" />
+          </Key>
+          <Property Name="A_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="A_NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DATA">
+          <Key>
+            <PropertyRef Name="D_ID" />
+          </Key>
+          <Property Name="D_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="D_NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FILM">
+          <Key>
+            <PropertyRef Name="F_ID" />
+          </Key>
+          <Property Name="F_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="F_NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="D_ID" Type="int" Nullable="false" />
+          <Property Name="R_ID" Type="int" Nullable="false" />
+          <Property Name="P_ID" Type="int" Nullable="false" />
+          <Property Name="A_ID" Type="int" Nullable="false" />
+          <Property Name="S_ID" Type="int" Nullable="false" />
+          <Property Name="G_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GERNE">
+          <Key>
+            <PropertyRef Name="G_ID" />
+          </Key>
+          <Property Name="G_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="G_NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRODUCER">
+          <Key>
+            <PropertyRef Name="P_ID" />
+          </Key>
+          <Property Name="P_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="P_NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RATING">
+          <Key>
+            <PropertyRef Name="R_ID" />
+          </Key>
+          <Property Name="R_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="R_NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SCREENWRITER">
+          <Key>
+            <PropertyRef Name="S_ID" />
+          </Key>
+          <Property Name="S_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="S_NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK__FILM__A_ID__19DFD96B">
+          <End Role="ACTOR" Type="Self.ACTOR" Multiplicity="1" />
+          <End Role="FILM" Type="Self.FILM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACTOR">
+              <PropertyRef Name="A_ID" />
+            </Principal>
+            <Dependent Role="FILM">
+              <PropertyRef Name="A_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FILM__D_ID__17036CC0">
+          <End Role="DATA" Type="Self.DATA" Multiplicity="1" />
+          <End Role="FILM" Type="Self.FILM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DATA">
+              <PropertyRef Name="D_ID" />
+            </Principal>
+            <Dependent Role="FILM">
+              <PropertyRef Name="D_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FILM__G_ID__1BC821DD">
+          <End Role="GERNE" Type="Self.GERNE" Multiplicity="1" />
+          <End Role="FILM" Type="Self.FILM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GERNE">
+              <PropertyRef Name="G_ID" />
+            </Principal>
+            <Dependent Role="FILM">
+              <PropertyRef Name="G_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FILM__P_ID__18EBB532">
+          <End Role="PRODUCER" Type="Self.PRODUCER" Multiplicity="1" />
+          <End Role="FILM" Type="Self.FILM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCER">
+              <PropertyRef Name="P_ID" />
+            </Principal>
+            <Dependent Role="FILM">
+              <PropertyRef Name="P_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FILM__R_ID__17F790F9">
+          <End Role="RATING" Type="Self.RATING" Multiplicity="1" />
+          <End Role="FILM" Type="Self.FILM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RATING">
+              <PropertyRef Name="R_ID" />
+            </Principal>
+            <Dependent Role="FILM">
+              <PropertyRef Name="R_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FILM__S_ID__1AD3FDA4">
+          <End Role="SCREENWRITER" Type="Self.SCREENWRITER" Multiplicity="1" />
+          <End Role="FILM" Type="Self.FILM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SCREENWRITER">
+              <PropertyRef Name="S_ID" />
+            </Principal>
+            <Dependent Role="FILM">
+              <PropertyRef Name="S_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище FilmPickModelContainer">
+          <EntitySet Name="ACTOR" EntityType="Self.ACTOR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DATA" EntityType="Self.DATA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FILM" EntityType="Self.FILM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GERNE" EntityType="Self.GERNE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRODUCER" EntityType="Self.PRODUCER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RATING" EntityType="Self.RATING" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SCREENWRITER" EntityType="Self.SCREENWRITER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__FILM__A_ID__19DFD96B" Association="Self.FK__FILM__A_ID__19DFD96B">
+            <End Role="ACTOR" EntitySet="ACTOR" />
+            <End Role="FILM" EntitySet="FILM" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FILM__D_ID__17036CC0" Association="Self.FK__FILM__D_ID__17036CC0">
+            <End Role="DATA" EntitySet="DATA" />
+            <End Role="FILM" EntitySet="FILM" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FILM__G_ID__1BC821DD" Association="Self.FK__FILM__G_ID__1BC821DD">
+            <End Role="GERNE" EntitySet="GERNE" />
+            <End Role="FILM" EntitySet="FILM" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FILM__P_ID__18EBB532" Association="Self.FK__FILM__P_ID__18EBB532">
+            <End Role="PRODUCER" EntitySet="PRODUCER" />
+            <End Role="FILM" EntitySet="FILM" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FILM__R_ID__17F790F9" Association="Self.FK__FILM__R_ID__17F790F9">
+            <End Role="RATING" EntitySet="RATING" />
+            <End Role="FILM" EntitySet="FILM" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FILM__S_ID__1AD3FDA4" Association="Self.FK__FILM__S_ID__1AD3FDA4">
+            <End Role="SCREENWRITER" EntitySet="SCREENWRITER" />
+            <End Role="FILM" EntitySet="FILM" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FilmPickModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ACTOR">
+          <Key>
+            <PropertyRef Name="A_ID" />
+          </Key>
+          <Property Name="A_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="A_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="FILM" Relationship="Self.FK__FILM__A_ID__07C12930" FromRole="ACTOR" ToRole="FILM" />
+        </EntityType>
+        <EntityType Name="DATA">
+          <Key>
+            <PropertyRef Name="D_ID" />
+          </Key>
+          <Property Name="D_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="D_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="FILM" Relationship="Self.FK__FILM__D_ID__04E4BC85" FromRole="DATA" ToRole="FILM" />
+        </EntityType>
+        <EntityType Name="FILM">
+          <Key>
+            <PropertyRef Name="F_ID" />
+          </Key>
+          <Property Name="F_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="F_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="D_ID" Type="Int32" Nullable="false" />
+          <Property Name="R_ID" Type="Int32" Nullable="false" />
+          <Property Name="P_ID" Type="Int32" Nullable="false" />
+          <Property Name="A_ID" Type="Int32" Nullable="false" />
+          <Property Name="S_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ACTOR" Relationship="Self.FK__FILM__A_ID__07C12930" FromRole="FILM" ToRole="ACTOR" />
+          <NavigationProperty Name="DATA" Relationship="Self.FK__FILM__D_ID__04E4BC85" FromRole="FILM" ToRole="DATA" />
+          <NavigationProperty Name="PRODUCER" Relationship="Self.FK__FILM__P_ID__06CD04F7" FromRole="FILM" ToRole="PRODUCER" />
+          <NavigationProperty Name="RATING" Relationship="Self.FK__FILM__R_ID__05D8E0BE" FromRole="FILM" ToRole="RATING" />
+          <NavigationProperty Name="SCREENWRITER" Relationship="Self.FK__FILM__S_ID__08B54D69" FromRole="FILM" ToRole="SCREENWRITER" />
+          <Property Name="G_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GERNE" Relationship="FilmPickModel.FK__FILM__G_ID__1BC821DD" FromRole="FILM" ToRole="GERNE" />
+        </EntityType>
+        <EntityType Name="GERNE">
+          <Key>
+            <PropertyRef Name="G_ID" />
+          </Key>
+          <Property Name="G_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="G_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="FILM" Relationship="FilmPickModel.FK__FILM__G_ID__1BC821DD" FromRole="GERNE" ToRole="FILM" />
+        </EntityType>
+        <EntityType Name="PRODUCER">
+          <Key>
+            <PropertyRef Name="P_ID" />
+          </Key>
+          <Property Name="P_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="P_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="FILM" Relationship="Self.FK__FILM__P_ID__06CD04F7" FromRole="PRODUCER" ToRole="FILM" />
+        </EntityType>
+        <EntityType Name="RATING">
+          <Key>
+            <PropertyRef Name="R_ID" />
+          </Key>
+          <Property Name="R_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="R_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="FILM" Relationship="Self.FK__FILM__R_ID__05D8E0BE" FromRole="RATING" ToRole="FILM" />
+        </EntityType>
+        <EntityType Name="SCREENWRITER">
+          <Key>
+            <PropertyRef Name="S_ID" />
+          </Key>
+          <Property Name="S_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="S_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="FILM" Relationship="Self.FK__FILM__S_ID__08B54D69" FromRole="SCREENWRITER" ToRole="FILM" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK__FILM__A_ID__07C12930">
+          <End Role="ACTOR" Type="Self.ACTOR" Multiplicity="1" />
+          <End Role="FILM" Type="Self.FILM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACTOR">
+              <PropertyRef Name="A_ID" />
+            </Principal>
+            <Dependent Role="FILM">
+              <PropertyRef Name="A_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FILM__D_ID__04E4BC85">
+          <End Role="DATA" Type="Self.DATA" Multiplicity="1" />
+          <End Role="FILM" Type="Self.FILM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DATA">
+              <PropertyRef Name="D_ID" />
+            </Principal>
+            <Dependent Role="FILM">
+              <PropertyRef Name="D_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FILM__P_ID__06CD04F7">
+          <End Role="PRODUCER" Type="Self.PRODUCER" Multiplicity="1" />
+          <End Role="FILM" Type="Self.FILM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCER">
+              <PropertyRef Name="P_ID" />
+            </Principal>
+            <Dependent Role="FILM">
+              <PropertyRef Name="P_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FILM__R_ID__05D8E0BE">
+          <End Role="RATING" Type="Self.RATING" Multiplicity="1" />
+          <End Role="FILM" Type="Self.FILM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RATING">
+              <PropertyRef Name="R_ID" />
+            </Principal>
+            <Dependent Role="FILM">
+              <PropertyRef Name="R_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FILM__S_ID__08B54D69">
+          <End Role="SCREENWRITER" Type="Self.SCREENWRITER" Multiplicity="1" />
+          <End Role="FILM" Type="Self.FILM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SCREENWRITER">
+              <PropertyRef Name="S_ID" />
+            </Principal>
+            <Dependent Role="FILM">
+              <PropertyRef Name="S_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FilmPickEntities3" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ACTOR" EntityType="Self.ACTOR" />
+          <EntitySet Name="DATA" EntityType="Self.DATA" />
+          <EntitySet Name="FILM" EntityType="Self.FILM" />
+          <EntitySet Name="GERNE" EntityType="Self.GERNE" />
+          <EntitySet Name="PRODUCER" EntityType="Self.PRODUCER" />
+          <EntitySet Name="RATING" EntityType="Self.RATING" />
+          <EntitySet Name="SCREENWRITER" EntityType="Self.SCREENWRITER" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK__FILM__A_ID__07C12930" Association="Self.FK__FILM__A_ID__07C12930">
+            <End Role="ACTOR" EntitySet="ACTOR" />
+            <End Role="FILM" EntitySet="FILM" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FILM__D_ID__04E4BC85" Association="Self.FK__FILM__D_ID__04E4BC85">
+            <End Role="DATA" EntitySet="DATA" />
+            <End Role="FILM" EntitySet="FILM" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FILM__P_ID__06CD04F7" Association="Self.FK__FILM__P_ID__06CD04F7">
+            <End Role="PRODUCER" EntitySet="PRODUCER" />
+            <End Role="FILM" EntitySet="FILM" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FILM__R_ID__05D8E0BE" Association="Self.FK__FILM__R_ID__05D8E0BE">
+            <End Role="RATING" EntitySet="RATING" />
+            <End Role="FILM" EntitySet="FILM" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FILM__S_ID__08B54D69" Association="Self.FK__FILM__S_ID__08B54D69">
+            <End Role="SCREENWRITER" EntitySet="SCREENWRITER" />
+            <End Role="FILM" EntitySet="FILM" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FILM__G_ID__1BC821DD" Association="FilmPickModel.FK__FILM__G_ID__1BC821DD">
+            <End Role="GERNE" EntitySet="GERNE" />
+            <End Role="FILM" EntitySet="FILM" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK__FILM__G_ID__1BC821DD">
+          <End Type="FilmPickModel.GERNE" Role="GERNE" Multiplicity="1" />
+          <End Type="FilmPickModel.FILM" Role="FILM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GERNE">
+              <PropertyRef Name="G_ID" />
+            </Principal>
+            <Dependent Role="FILM">
+              <PropertyRef Name="G_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище FilmPickModelContainer" CdmEntityContainer="FilmPickEntities3">
+          <EntitySetMapping Name="ACTOR">
+            <EntityTypeMapping TypeName="FilmPickModel.ACTOR">
+              <MappingFragment StoreEntitySet="ACTOR">
+                <ScalarProperty Name="A_ID" ColumnName="A_ID" />
+                <ScalarProperty Name="A_NAME" ColumnName="A_NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DATA">
+            <EntityTypeMapping TypeName="FilmPickModel.DATA">
+              <MappingFragment StoreEntitySet="DATA">
+                <ScalarProperty Name="D_ID" ColumnName="D_ID" />
+                <ScalarProperty Name="D_NAME" ColumnName="D_NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FILM">
+            <EntityTypeMapping TypeName="FilmPickModel.FILM">
+              <MappingFragment StoreEntitySet="FILM">
+                <ScalarProperty Name="G_ID" ColumnName="G_ID" />
+                <ScalarProperty Name="F_ID" ColumnName="F_ID" />
+                <ScalarProperty Name="F_NAME" ColumnName="F_NAME" />
+                <ScalarProperty Name="D_ID" ColumnName="D_ID" />
+                <ScalarProperty Name="R_ID" ColumnName="R_ID" />
+                <ScalarProperty Name="P_ID" ColumnName="P_ID" />
+                <ScalarProperty Name="A_ID" ColumnName="A_ID" />
+                <ScalarProperty Name="S_ID" ColumnName="S_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GERNE">
+            <EntityTypeMapping TypeName="FilmPickModel.GERNE">
+              <MappingFragment StoreEntitySet="GERNE">
+                <ScalarProperty Name="G_ID" ColumnName="G_ID" />
+                <ScalarProperty Name="G_NAME" ColumnName="G_NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCER">
+            <EntityTypeMapping TypeName="FilmPickModel.PRODUCER">
+              <MappingFragment StoreEntitySet="PRODUCER">
+                <ScalarProperty Name="P_ID" ColumnName="P_ID" />
+                <ScalarProperty Name="P_NAME" ColumnName="P_NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RATING">
+            <EntityTypeMapping TypeName="FilmPickModel.RATING">
+              <MappingFragment StoreEntitySet="RATING">
+                <ScalarProperty Name="R_ID" ColumnName="R_ID" />
+                <ScalarProperty Name="R_NAME" ColumnName="R_NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SCREENWRITER">
+            <EntityTypeMapping TypeName="FilmPickModel.SCREENWRITER">
+              <MappingFragment StoreEntitySet="SCREENWRITER">
+                <ScalarProperty Name="S_ID" ColumnName="S_ID" />
+                <ScalarProperty Name="S_NAME" ColumnName="S_NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="FilmPickModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
